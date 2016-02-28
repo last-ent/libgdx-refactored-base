@@ -36,14 +36,41 @@ public class GameScreen extends ScreenAdapter {
         shapeRenderer = new ShapeRenderer();
         batch = new SpriteBatch();
     }
+    public void beginCameraMatrices(){
+        batch.setProjectionMatrix(camera.projection);
+        batch.setTransformMatrix(camera.view);
+        batch.begin();
+
+        shapeRenderer.setProjectionMatrix(camera.projection);
+        shapeRenderer.setTransformMatrix(camera.view);
+        shapeRenderer.setAutoShapeType(true);
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+    }
+    
+    public void endCameraMatrices(){
+        batch.end();
+        shapeRenderer.end();
+    }
+    
+    public void updateOnDelta(float delta) {
+        
+    }
+    
+    public void updateOnOneSecond(float delta) {
+        
+    }
 
     @Override
     public void render(float delta) {
         clearScreen();
-        batch.setProjectionMatrix(camera.projection);
-        batch.setTransformMatrix(camera.view);
-        batch.begin();
-        batch.end();
+        beginCameraMatrices();
+        
+        // Game Logic Start.
+        updateOnOneSecond(delta);
+        updateOnDelta(delta);
+        //Game Logic End.
+        
+        endCameraMatrices();
     }
 
     private void clearScreen() {
