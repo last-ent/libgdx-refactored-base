@@ -17,6 +17,7 @@ public class GameScreen extends ScreenAdapter {
     private Viewport viewport;
     private Camera camera;
     private SpriteBatch batch;
+    private static float timer = GameConstants.SECOND;
 
     @Override
     public void resize(int width, int height) {
@@ -54,7 +55,11 @@ public class GameScreen extends ScreenAdapter {
     }
     
     public void updateOnOneSecond(float delta) {
+        timer -= delta;
+        if (timer > 0) return;
+        timer = GameConstants.SECOND;
         
+        // Game Logic follows.
     }
 
     @Override
@@ -63,8 +68,10 @@ public class GameScreen extends ScreenAdapter {
         beginCameraMatrices();
         
         // Game Logic Start.
+
         updateOnOneSecond(delta);
         updateOnDelta(delta);
+
         //Game Logic End.
         
         endCameraMatrices();
