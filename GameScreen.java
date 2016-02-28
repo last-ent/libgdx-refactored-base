@@ -13,9 +13,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class GameScreen extends ScreenAdapter {
 
-    private static final float WORLD_WIDTH = 480;
-    private static final float WORLD_HEIGHT = 640;
-
     private ShapeRenderer shapeRenderer;
     private Viewport viewport;
     private Camera camera;
@@ -29,10 +26,10 @@ public class GameScreen extends ScreenAdapter {
     @Override
     public void show() {
         camera = new OrthographicCamera();
-        camera.position.set(WORLD_WIDTH /2, WORLD_HEIGHT /2, 0);
+        camera.position.set(GameConstants.WORLD_WIDTH /2, GameConstants.WORLD_HEIGHT /2, 0);
         camera.update();
 
-        viewport = new FitViewport(WORLD_WIDTH, WORLD_HEIGHT, camera);
+        viewport = new FitViewport(GameConstants.WORLD_WIDTH, GameConstants.WORLD_HEIGHT, camera);
         shapeRenderer = new ShapeRenderer();
         batch = new SpriteBatch();
     }
